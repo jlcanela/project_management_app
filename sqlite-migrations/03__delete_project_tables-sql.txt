@@ -1,0 +1,34 @@
+-- Drop columns added by ALTER TABLE statements
+ALTER TABLE assignments
+DROP COLUMN created_by,
+DROP COLUMN created_at;
+
+ALTER TABLE projects
+DROP COLUMN created_by,
+DROP COLUMN created_at,
+DROP COLUMN updated_by,
+DROP COLUMN updated_at;
+
+ALTER TABLE party_role
+DROP COLUMN created_by,
+DROP COLUMN created_at;
+
+ALTER TABLE registered_identifier
+DROP COLUMN created_by,
+DROP COLUMN created_at;
+
+ALTER TABLE role_type
+DROP COLUMN created_by,
+DROP COLUMN created_at;
+
+ALTER TABLE parties
+DROP COLUMN created_by,
+DROP COLUMN created_at;
+
+
+DROP TABLE IF EXISTS assignments;
+DROP TABLE IF EXISTS projects;
+DROP TABLE IF EXISTS party_role;
+DROP TABLE IF EXISTS registered_identifier;
+DROP TABLE IF EXISTS role_type;
+DROP TABLE IF EXISTS parties;

@@ -1,0 +1,6 @@
+{
+    "principal": "User::\"anonymous\"",
+    "action": "Action::\"ViewProject\"",
+    "resource": "Task::\"1\"",
+    "context": {}
+}

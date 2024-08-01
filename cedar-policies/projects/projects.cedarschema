@@ -1,0 +1,23 @@
+entity Group;
+entity Role;
+entity User in [Role,Group];
+
+entity Project in [Group] = {
+  "owner": User,
+  "assigned_to": Group,
+};
+
+action ViewProject,ListProject appliesTo {
+  principal: [User], 
+  resource: [Project],
+};
+
+action CreateParty,CreateRole,AssignRole,RemoveRole appliesTo {
+  principal: [User], 
+  resource: [Project],
+};
+
+action AuditProject,CreateProject,AssignPartyrole,ShareProject appliesTo {
+  principal: [User],
+  resource: [Project]
+};

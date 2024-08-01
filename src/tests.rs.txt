@@ -1,0 +1,53 @@
+use actix_web::{
+    get, post, test,
+    web::{self, Data},
+    App, HttpResponse, HttpServer, Responder,
+};
+use serde::{Deserialize, Serialize};
+
+#[cfg(test)]
+mod tests {
+
+    use super::*;
+    use crate::tests::index_get;
+    use actix_web::http::header::ContentType;
+
+    #[actix_web::test]
+    async fn test_index_get() {
+        let app = test::init_service(App::new().service(index_get)).await;
+        let req = test::TestRequest::default()
+            //.insert_header(ContentType::plaintext())
+            .to_request();
+        let resp = test::call_service(&app, req).await;
+        let status = resp.status();
+        let is_success = status.is_success();
+        assert!(is_success);
+    }
+
+    #[actix_web::test]
+    async fn test_index_post() {
+        let app = test::init_service(App::new().service(index_post)).await;
+        let req = test::TestRequest::post()
+            .uri("/")
+            .insert_header(ContentType::plaintext())
+            .to_request();
+        let resp = test::call_service(&app, req).await;
+        let status = resp.status();
+        assert!(resp.status().is_success());
+    }
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct AppState {
+    count: i32,
+}
+
+#[get("/")]
+async fn index_get() -> impl Responder {
+    HttpResponse::Ok().body("Ok")
+}
+
+#[post("/")]
+async fn index_post() -> impl Responder {
+    HttpResponse::Ok().body("Ok")
+}

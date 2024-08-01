@@ -1,0 +1,6 @@
+{
+    "principal": "User::\"Paul\"",
+    "action": "Action::\"CreateProject\"",
+    "resource": "Project::\"unknown\"",
+    "context": {}
+}
